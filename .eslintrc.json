@@ -25,6 +25,7 @@
                 "ignorePackages": true
             }
         ],
-        "import/no-unresolved": "off"
+        "import/no-unresolved": "off",
+        "consistent-return": "off"
     }
 }
