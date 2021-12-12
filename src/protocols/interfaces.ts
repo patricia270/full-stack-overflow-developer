@@ -14,8 +14,14 @@ interface HttpResponse {
     body?: any;
 }
 
+interface UserBody {
+    name: string;
+    class: string;
+}
+
 export {
     QuestionBody,
     QuestionCreated,
     HttpResponse,
+    UserBody,
 };
