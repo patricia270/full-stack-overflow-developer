@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
-import { QuestionBody } from '../protocols/interfaces';
+import { QuestionBody, HttpResponse } from '../protocols/interfaces';
 import { questionBodySchema } from '../schemas/questionSchema';
 import * as questionService from '../services/questionService';
 
-async function postQuestion(req: Request, res: Response) {
+async function postQuestion(req: Request, res: Response): Promise<HttpResponse> {
     const questionBody : QuestionBody = req.body;
     const invalidBody = questionBodySchema.validate(questionBody).error;
 
@@ -12,9 +12,8 @@ async function postQuestion(req: Request, res: Response) {
     }
 
     try {
-        await questionService.createQuestion(questionBody);
-
-        res.sendStatus(201);
+        const questionId = await questionService.createQuestion(questionBody);
+        res.status(201).send(questionId);
     } catch (error) {
         res.sendStatus(500);
     }
