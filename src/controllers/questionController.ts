@@ -19,6 +19,16 @@ async function postQuestion(req: Request, res: Response): Promise<HttpResponse> 
     }
 }
 
+async function getQuestions(req: Request, res: Response) {
+    try {
+        const questionsList = await questionService.selectQuestions();
+        res.send(questionsList);
+    } catch (error) {
+        res.sendStatus(500);
+    }
+}
+
 export {
     postQuestion,
+    getQuestions,
 };

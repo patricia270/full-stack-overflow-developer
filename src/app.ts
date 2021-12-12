@@ -8,5 +8,6 @@ app.use(express.json());
 app.use(cors());
 
 app.post('/questions', questionController.postQuestion);
+app.get('/questions', questionController.getQuestions);
 
 export default app;

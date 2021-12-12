@@ -6,6 +6,12 @@ async function createQuestion(questionBody : QuestionBody) {
     return questionId;
 }
 
+async function selectQuestions() {
+    const questionsList = await questionRepository.selectQuestions();
+    return questionsList;
+}
+
 export {
     createQuestion,
+    selectQuestions,
 };
