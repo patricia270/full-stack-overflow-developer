@@ -18,9 +18,15 @@ async function updateAnswered(id: number) {
     await answerRepository.updateAnswered(id);
 }
 
+async function checkAnsweredQuestion(id: number) {
+    const result = await answerRepository.checkAnsweredQuestion(id);
+    return result;
+}
+
 export {
     authentication,
     selectAnsweredBy,
     createAnswer,
     updateAnswered,
+    checkAnsweredQuestion,
 };

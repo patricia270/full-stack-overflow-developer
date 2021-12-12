@@ -23,8 +23,17 @@ async function updateAnswered(id: number) {
     ;`, [true, id]);
 }
 
+async function checkAnsweredQuestion(id: number) {
+    const result = await connection.query(`
+        SELECT * FROM questions
+         WHERE id = $1 AND answered = $2
+    ;`, [id, false]);
+    return result.rowCount;
+}
+
 export {
     selectAnsweredBy,
     createAnswer,
     updateAnswered,
+    checkAnsweredQuestion,
 };
