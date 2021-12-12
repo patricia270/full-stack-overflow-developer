@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
-import { UserBody } from '../protocols/interfaces';
+import { UserBody, HttpResponse } from '../protocols/interfaces';
 import { userSchemmaBody } from '../schemas/userSchema';
 import * as userService from '../services/userService';
 
-async function registerUser(req: Request, res: Response) {
+async function registerUser(req: Request, res: Response): Promise<HttpResponse> {
     const userBody: UserBody = req.body;
     const invalidBody = userSchemmaBody.validate(userBody).error;
 
