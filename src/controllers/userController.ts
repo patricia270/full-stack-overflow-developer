@@ -1,9 +1,15 @@
 import { Request, Response } from 'express';
 import { UserBody } from '../protocols/interfaces';
+import { userSchemmaBody } from '../schemas/userSchema';
 import * as userService from '../services/userService';
 
 async function registerUser(req: Request, res: Response) {
     const userBody: UserBody = req.body;
+    const invalidBody = userSchemmaBody.validate(userBody).error;
+
+    if (invalidBody) {
+        return res.sendStatus(400);
+    }
 
     try {
         const conflict = await userService.checkConflit(userBody);
