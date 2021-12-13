@@ -12,6 +12,7 @@ app.use(cors());
 app.post('/questions', questionController.postQuestion);
 app.get('/questions', questionController.getQuestions);
 
+app.get('/questions/:id', questionController.getQuestionById);
 app.post('/questions/:id', answerController.postAnswer);
 
 app.post('/users', userController.registerUser);

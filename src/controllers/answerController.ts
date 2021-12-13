@@ -21,9 +21,11 @@ async function postAnswer(req: Request, res: Response): Promise<HttpResponse> {
 
     try {
         const result = await answerService.checkAnsweredQuestion(Number(id));
-        if (!result) {
+
+        if (result) {
             return res.sendStatus(404);
         }
+
         const answeredBy = await answerService.selectAnsweredBy(token);
         await answerService.createAnswer(Number(id), answeredBy, answer);
         await answerService.updateAnswered(Number(id));

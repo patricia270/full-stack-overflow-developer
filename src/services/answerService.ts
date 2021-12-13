@@ -20,6 +20,9 @@ async function updateAnswered(id: number) {
 
 async function checkAnsweredQuestion(id: number) {
     const result = await answerRepository.checkAnsweredQuestion(id);
+    if (result === undefined) {
+        return null;
+    }
     return result;
 }
 

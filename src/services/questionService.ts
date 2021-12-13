@@ -11,7 +11,19 @@ async function selectQuestions() {
     return questionsList;
 }
 
+async function selectUnansweredQuestion(id: number) {
+    const result = await questionRepository.selectUnansweredQuestion(id);
+    return result;
+}
+
+async function SelectAnsweredQuestion(id: number) {
+    const result = await questionRepository.SelectAnsweredQuestion(id);
+    return result;
+}
+
 export {
     createQuestion,
     selectQuestions,
+    selectUnansweredQuestion,
+    SelectAnsweredQuestion,
 };

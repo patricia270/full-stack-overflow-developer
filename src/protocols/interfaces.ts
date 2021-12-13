@@ -5,13 +5,19 @@ interface QuestionBody {
     tags: string;
 }
 
-interface QuestionCreated extends QuestionBody {
-    id: number;
+interface UnansweredQuestion extends QuestionBody {
+    id?: number;
+    answered?: boolean;
+    submitAt: string;
 }
 
-interface HttpResponse {
-    statusCode: number;
-    body?: any;
+interface answeredQuestion extends QuestionBody {
+    id?: number;
+    answered: boolean;
+    submitAt: string;
+    answeredAt: string;
+    answeredBy: string;
+    answer: string;
 }
 
 interface UserBody {
@@ -19,9 +25,15 @@ interface UserBody {
     class: string;
 }
 
+interface HttpResponse {
+    statusCode: number;
+    body?: any;
+}
+
 export {
     QuestionBody,
-    QuestionCreated,
+    UnansweredQuestion,
+    answeredQuestion,
     HttpResponse,
     UserBody,
 };
