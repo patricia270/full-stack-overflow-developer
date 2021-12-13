@@ -42,9 +42,10 @@ async function selectUnansweredQuestion(id: number): Promise<UnansweredQuestion>
 
 async function SelectAnsweredQuestion(id: number): Promise<answeredQuestion> {
     const result = await connection.query(`
-        SELECT question, student, class, answered, tags, 
-            submit_at AS "submitAt", answered_by AS "answeredBy",
-            answer, answered_at AS "answeredAt" from questions 
+        SELECT question, student, class, tags, answered,
+            submit_at AS "submitAt", answered_at AS "answeredAt",
+            answered_by AS "answeredBy", answer
+        FROM questions 
         JOIN answers ON questions.id = answers.question_id 
         AND questions.id = $1;
     ;`, [id]);
