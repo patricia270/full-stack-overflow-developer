@@ -23,7 +23,7 @@ async function createQuestion(questionBody : QuestionBody) {
 async function selectQuestions(): Promise<UnansweredQuestion[]> {
     const result = await connection.query(`
         SELECT id, question, student, class,
-            tags, answered, submit_at AS "submitAt"
+            tags, submit_at AS "submitAt"
         FROM questions
         WHERE answered = $1
     ;`, [false]);
