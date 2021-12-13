@@ -49,8 +49,19 @@ async function getQuestionById(req: Request, res: Response) {
     }
 }
 
+async function postUpvote(req: Request, res: Response) {
+    const { id } = req.params;
+    try {
+        await questionService.increaseScore(Number(id));
+        res.sendStatus(200);
+    } catch (error) {
+        res.sendStatus(500);
+    }
+}
+
 export {
     postQuestion,
     getQuestions,
     getQuestionById,
+    postUpvote,
 };

@@ -18,4 +18,6 @@ app.post('/questions/:id', answerController.postAnswer);
 app.post('/users', userController.registerUser);
 app.get('/ranking', userController.getRanking);
 
+app.post('/questions/:id/up-vote', questionController.postUpvote);
+
 export default app;

@@ -52,9 +52,18 @@ async function SelectAnsweredQuestion(id: number): Promise<answeredQuestion> {
     return result.rows[0];
 }
 
+async function increaseScore(id: number) {
+    await connection.query(`
+        UPDATE questions
+        SET score = score + $1
+        WHERE id = $2
+    ;`, [1, id]);
+}
+
 export {
     createQuestion,
     selectQuestions,
     selectUnansweredQuestion,
     SelectAnsweredQuestion,
+    increaseScore,
 };

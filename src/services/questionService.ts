@@ -21,9 +21,14 @@ async function SelectAnsweredQuestion(id: number) {
     return result;
 }
 
+async function increaseScore(id: number) {
+    await questionRepository.increaseScore(id);
+}
+
 export {
     createQuestion,
     selectQuestions,
     selectUnansweredQuestion,
     SelectAnsweredQuestion,
+    increaseScore,
 };
