@@ -23,7 +23,7 @@ async function createQuestion(questionBody : QuestionBody) {
 async function selectQuestions(): Promise<UnansweredQuestion[]> {
     const result = await connection.query(`
         SELECT id, question, student, class,
-            tags, submit_at AS "submitAt"
+            tags, TO_CHAR(submit_at, 'yyyy-mm-dd HH24:MI') AS "submitAt"
         FROM questions
         WHERE answered = $1
     ;`, [false]);
@@ -34,7 +34,7 @@ async function selectQuestions(): Promise<UnansweredQuestion[]> {
 async function selectUnansweredQuestion(id: number): Promise<UnansweredQuestion> {
     const result = await connection.query(`
         SELECT question, student, class,
-            tags, answered, submit_at AS "submitAt"
+            tags, answered, TO_CHAR(submit_at, 'yyyy-mm-dd HH24:MI') AS "submitAt"
         FROM questions WHERE id = $1
     ;`, [id]);
     return result.rows[0];
@@ -43,7 +43,8 @@ async function selectUnansweredQuestion(id: number): Promise<UnansweredQuestion>
 async function SelectAnsweredQuestion(id: number): Promise<answeredQuestion> {
     const result = await connection.query(`
         SELECT question, student, class, tags, answered,
-            submit_at AS "submitAt", answered_at AS "answeredAt",
+            TO_CHAR(submit_at, 'yyyy-mm-dd HH24:MI') AS "submitAt",
+            TO_CHAR(answered_at, 'yyyy-mm-dd HH24:MI') AS "answeredAt",
             answered_by AS "answeredBy", answer
         FROM questions 
         JOIN answers ON questions.id = answers.question_id 
