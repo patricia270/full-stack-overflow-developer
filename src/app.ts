@@ -1,12 +1,14 @@
 import express from 'express';
 import cors from 'cors';
-import router from './routers/questionRouter';
+import questionRouter from './routers/questionRouter';
+import userRouter from './routers/userRouter';
 
 const app = express();
 
 app.use(express.json());
 app.use(cors());
 
-app.use(router);
+app.use(questionRouter);
+app.use(userRouter);
 
 export default app;

@@ -11,10 +11,10 @@ router.get('/questions', questionController.getQuestions);
 router.get('/questions/:id', questionController.getQuestionById);
 router.post('/questions/:id', answerController.postAnswer);
 
-router.post('/users', userController.registerUser);
-router.get('/ranking', userController.getRanking);
-
 router.put('/questions/:id/up-vote', questionController.postUpvote);
 router.put('/questions/:id/down-vote', questionController.postDownvote);
+
+router.post('/users', userController.registerUser);
+router.get('/ranking', userController.getRanking);
 
 export default router;
