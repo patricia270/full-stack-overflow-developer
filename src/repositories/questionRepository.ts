@@ -60,10 +60,19 @@ async function increaseScore(id: number) {
     ;`, [1, id]);
 }
 
+async function decreaseScore(id: number) {
+    await connection.query(`
+        UPDATE questions
+        SET score = score - $1
+        WHERE id = $2
+    ;`, [1, id]);
+}
+
 export {
     createQuestion,
     selectQuestions,
     selectUnansweredQuestion,
     SelectAnsweredQuestion,
     increaseScore,
+    decreaseScore,
 };

@@ -25,10 +25,15 @@ async function increaseScore(id: number) {
     await questionRepository.increaseScore(id);
 }
 
+async function decreaseScore(id: number) {
+    await questionRepository.decreaseScore(id);
+}
+
 export {
     createQuestion,
     selectQuestions,
     selectUnansweredQuestion,
     SelectAnsweredQuestion,
     increaseScore,
+    decreaseScore,
 };

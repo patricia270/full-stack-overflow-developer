@@ -59,9 +59,20 @@ async function postUpvote(req: Request, res: Response) {
     }
 }
 
+async function postDownvote(req: Request, res: Response) {
+    const { id } = req.params;
+    try {
+        await questionService.decreaseScore(Number(id));
+        res.sendStatus(200);
+    } catch (error) {
+        res.sendStatus(500);
+    }
+}
+
 export {
     postQuestion,
     getQuestions,
     getQuestionById,
     postUpvote,
+    postDownvote,
 };
