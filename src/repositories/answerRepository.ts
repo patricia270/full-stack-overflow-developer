@@ -1,16 +1,16 @@
 import connection from '../database/database';
+import { UserCreated } from '../protocols/interfaces';
 
-async function selectAnsweredBy(token: string): Promise<string> {
+async function selectAnsweredBy(token: string): Promise<UserCreated> {
     const result = await connection.query(`
-        SELECT name
-        FROM users 
+        SELECT * FROM users 
         WHERE id = (
             SELECT user_id
             FROM sessions 
             WHERE token = $1
         )
     ;`, [token]);
-    return result.rows[0].name;
+    return result.rows[0];
 }
 
 async function createAnswer(id: number, answeredBy: string, answer: string) {
@@ -35,7 +35,7 @@ async function checkAnsweredQuestion(id: number) {
         FROM questions
         WHERE id = $1
     ;`, [id]);
-    return result.rows[0]?.answered;
+    return result.rows[0];
 }
 
 export {

@@ -18,8 +18,19 @@ async function createSession(id: number) {
     return token;
 }
 
+async function updateUserAnswers(userId: number) {
+    await userRepository.updateUserAnswers(userId);
+}
+
+async function selectTopUsers() {
+    const result = await userRepository.selectTopUsers();
+    return result;
+}
+
 export {
     checkConflit,
     createUser,
     createSession,
+    updateUserAnswers,
+    selectTopUsers,
 };

@@ -1,5 +1,5 @@
 import connection from '../database/database';
-import { UserBody } from '../protocols/interfaces';
+import { Ranking, UserBody } from '../protocols/interfaces';
 
 async function checkConflict(userBody: UserBody) {
     const result = await connection.query(`
@@ -29,8 +29,28 @@ async function createSession(userId: number, token: string) {
     `, [userId, token]);
 }
 
+async function updateUserAnswers(userId: number) {
+    await connection.query(`
+        UPDATE users
+        SET answers = answers + $1
+        WHERE id = $2
+    ;`, [1, userId]);
+}
+
+async function selectTopUsers(): Promise<Ranking[]> {
+    const result = await connection.query(`
+        SELECT name, answers 
+        FROM users 
+        ORDER BY answers DESC 
+        LIMIT $1;
+    ;`, [10]);
+    return result.rows;
+}
+
 export {
     checkConflict,
     createUser,
     createSession,
+    updateUserAnswers,
+    selectTopUsers,
 };

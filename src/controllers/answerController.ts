@@ -28,9 +28,8 @@ async function postAnswer(req: Request, res: Response): Promise<HttpResponse> {
 
         const answeredBy = await answerService.selectAnsweredBy(token);
         await answerService.createAnswer(Number(id), answeredBy, answer);
-        await answerService.updateAnswered(Number(id));
 
-        res.sendStatus(200);
+        res.sendStatus(201);
     } catch (error) {
         res.sendStatus(500);
     }

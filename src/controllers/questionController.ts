@@ -34,6 +34,7 @@ async function getQuestionById(req: Request, res: Response) {
 
     try {
         const result = await answerService.checkAnsweredQuestion(Number(id));
+
         if (result === null) {
             return res.sendStatus(404);
         }

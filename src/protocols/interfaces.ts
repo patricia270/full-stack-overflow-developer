@@ -25,6 +25,16 @@ interface UserBody {
     class: string;
 }
 
+interface UserCreated extends UserBody {
+    id: number;
+    answers: number;
+}
+
+interface Ranking {
+    name: string;
+    answers: number;
+}
+
 interface HttpResponse {
     statusCode: number;
     body?: any;
@@ -36,4 +46,6 @@ export {
     answeredQuestion,
     HttpResponse,
     UserBody,
+    UserCreated,
+    Ranking,
 };

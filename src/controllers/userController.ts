@@ -27,6 +27,16 @@ async function registerUser(req: Request, res: Response): Promise<HttpResponse> 
     }
 }
 
+async function getRanking(req: Request, res: Response) {
+    try {
+        const rankingTopUsers = await userService.selectTopUsers();
+        res.send(rankingTopUsers);
+    } catch (error) {
+        res.sendStatus(500);
+    }
+}
+
 export {
     registerUser,
+    getRanking,
 };

@@ -16,5 +16,6 @@ app.get('/questions/:id', questionController.getQuestionById);
 app.post('/questions/:id', answerController.postAnswer);
 
 app.post('/users', userController.registerUser);
+app.get('/ranking', userController.getRanking);
 
 export default app;
